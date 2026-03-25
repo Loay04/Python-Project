@@ -1,0 +1,42 @@
+from turtle import Turtle, Screen
+import random
+sam = Turtle()
+window = Screen()
+window.setup(700,700)
+window.bgcolor("white")
+colors = ("yellow","red","green","purple")
+shapes = ("turtle","arrow")
+size = (2,4,6,8,10)
+sam.speed("fast")
+while True:
+    draw = window.textinput("Welcome The Art application", "Please Enter a name of Draw")
+    if draw == "triangle":
+      sam.shape(random.choice(shapes))
+      sam.color(random.choice(colors))
+      sam.pensize(random.choice(size))
+      for _ in range(3):
+        sam.forward(150)
+        sam.left(120)
+    elif draw == "square":
+      sam.shape(random.choice(shapes))
+      sam.color(random.choice(colors))
+      sam.pensize(random.choice(size))
+      for _ in range(4):
+        sam.forward(150)
+        sam.left(90)
+    elif draw == "circle":
+      sam.shape(random.choice(shapes))
+      sam.color(random.choice(colors))
+      sam.pensize(random.choice(size))
+      sam.circle(70)
+    elif draw == "exit":
+      window.clear()
+      window.bgcolor("blue")
+      sam.hideturtle()
+      sam.pensize(10)
+      sam.write("Press any where to exit", font=("Arial",40,"bold"),align="center")
+      if window.exitonclick():
+         break
+    else:
+        continue
+        
