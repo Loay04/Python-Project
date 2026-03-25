@@ -1,0 +1,83 @@
+import os 
+import time
+def clear():
+    os.system("cls") if os.name == "nt" else os.system("clear")
+
+members = []
+members_found = []
+class Management:
+    def __init__(self,first_name,last_name,Id,status="Inactive"):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.Id= Id
+        self.status = status
+    def display_all_members(self):
+        print(f"First Name: {self.first_name}")
+        print(f"Last Name: {self.last_name}")
+        print(f"Membership ID: {self.Id}")
+        print(f"Membership Status: {self.status}")
+        print("_" * 20)
+def add_member():
+    first_name = input("Enter first name: ").capitalize()
+    last_name = input("Enter last name: ").capitalize()
+    Id = input("Enter membership Id: ")
+    status = input("Enter membership status, Or click enter: ").capitalize()
+    user = Management(first_name, last_name,Id)
+    members.append(user)
+    if status == "Active":
+        user.status = "Active"
+    print("Member added successfully!")
+    time.sleep(2)
+def main():
+    clear()
+    print("Welcome to Gym Membership Management...")
+    while True:
+        clear()
+        choice = input("""
+Choose An Action:\n
+1. Add new member
+2. Display all members
+3. Search for a member
+4. Exit\n
+Enter your choice: """)
+        if choice == "1":
+            add_member()
+        elif choice == "2":
+            for i in members:
+                i.display_all_members() 
+            time.sleep(2)
+        elif choice == "3":
+            if members:
+                clear()
+                choice = input("""
+    Search by:\n
+    1. Membership ID
+    2. First Name
+    3. Membership Status\n
+    Enter Your Choice
+    """)
+                if choice == "1":
+                    id = input("Enter The Membership ID To Search: ")
+                    for i in members: 
+                        if i.Id == id:
+                          i.display_all_members()
+                    time.sleep(2)
+                elif choice == "2":
+                    first= input("Enter The Membership First Name To Search: ").capitalize()
+                    for i in members: 
+                      if i.first_name == first:
+                        i.display_all_members()
+                    time.sleep(2)
+                elif choice == "3":
+                    status = input("Enter The Membership Status To Search: ").capitalize()
+                    for i in members: 
+                      if i.status == status:
+                        i.display_all_members()
+                    time.sleep(2)
+            else:
+                print("Invalid Input...")
+                time.sleep(2)
+        else:
+            print("Invalid Input...")
+            time.sleep(2)
+main()
