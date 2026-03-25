@@ -1,0 +1,84 @@
+
+import random
+def hangman_game():
+    hangman = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+    words = ["red","yellow","black","purple","good"]
+    random_word = random.choice(words)
+    lives = 6
+    guessed_lettre = []
+    display = ["_"] * len(random_word)
+    print(hangman[0])
+    print(" ".join(display))
+    while "_" in display and lives > 0:
+        guess = input("Please guess a lettre: ").lower()
+        if guess in guessed_lettre:
+            print("You already guessed that. Try again.")
+            print(f"You have {lives} more tries")
+            continue
+        guessed_lettre.append(guess)
+        if guess not in random_word:
+            lives -= 1
+            print(hangman[6-lives])
+        else:
+            for index in range(0,len(random_word)):
+              if guess  == random_word[index]:
+                 display[index] = guess
+        print(" ".join(display))
+        print(f"you have {lives} more tries")
+    if lives == 0:
+            print("YOU LOSE")
+    else:
+            print("""
+          *******
+          YOU WIN
+          *******
+          """)
