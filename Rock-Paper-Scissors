@@ -1,0 +1,50 @@
+import random
+def rock_paper_scissors():
+
+    rock = '''  
+    _______
+---'   ____)  
+      (_____)  
+      (_____)  
+      (____)
+---.__(___)  
+'''
+    paper = '''  
+    _______
+---'   ____)____  
+          ______)  
+          _______)  
+         _______)
+---.__________)  
+'''
+    scissors = '''  
+    _______
+---'   ____)____  
+          ______)  
+       __________)  
+      (____)
+---.__(___)  
+'''
+    choices={"rock":rock,"paper":paper,"scissors":scissors}
+    print("Welcome to the Rock, Paper, Scissors game: ")
+    if input("Press Enter to continue or type (Help) for the rules ").lower() == "help":
+      print("************* RULES *************")
+      print("1) You choose and the computer chooses")
+      print("2) Rock smashes Scissors -> Rock wins")
+      print("3) Scissors cut paper -> Scissors win")
+      print("4) Paper covers Rock -> Paper wins")
+    choice=input("Enter your choice (rock, paper, scissors): ").lower()
+    if choice not in ["rock","paper","scissors"]:
+        print("Invalid choice. Please run the program again and choose rock, paper or scissors")
+    else:
+        computer_choice = random.choice(["rock","paper","scissors"])
+        print(f"you choose: {choices[choice]}")
+        print(f"computer choose: {choices[computer_choice]}")
+        if (computer_choice == "rock" and choice == "paper" 
+        or computer_choice == "scissors" and choice == "rock" 
+        or computer_choice == "paper" and choice == "scissors"): 
+          print(f"You win! {choice} beats {computer_choice}.")  
+        elif computer_choice == choice:
+            print("It's a tie!")
+        else:
+            print(f"You lose! {computer_choice} beats {choice}.")
